@@ -1,0 +1,33 @@
+{
+  "name": "balancedbrackets",
+  "version": "1.0.0",
+  "description": "Teste técnico para a vaga de Engenheiro de Software Front End - Angular",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "mocha",
+    "test:watch": "mocha --watch",
+    "lint": "eslint src/*.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abalad/BalancedBrackets-Test01.git"
+  },
+  "author": "Maicon Wagner dos Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abalad/BalancedBrackets-Test01/issues"
+  },
+  "homepage": "https://github.com/abalad/BalancedBrackets-Test01#readme",
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "expect.js": "^0.3.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4"
+  }
+}
