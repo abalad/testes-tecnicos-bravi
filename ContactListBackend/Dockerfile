@@ -3,5 +3,4 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 RUN npm install -g nodemon --quiet
 EXPOSE 3030
-#CMD ["npm", "run", "dev"]
 CMD ["npm", "start"]
