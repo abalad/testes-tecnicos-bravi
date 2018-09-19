@@ -1,0 +1,93 @@
+@import "../../../../assets/styles/theming";
+
+.cl-container-wrapper{
+  height: 100%;
+  width: 100%;
+}
+
+.cl-content{
+  >.cl-contact-list{
+    overflow: auto;
+    background-color: #F3F3F3;
+    > mat-card {
+      box-sizing: border-box;
+      color: #FFF;
+      padding: 0;
+      border-radius: 0px;
+      box-shadow: none;
+    }
+    > :nth-child(even){
+      background-color: #FFFFFF;
+    }
+    > :nth-child(odd){
+      background-color: #F3F3F3;
+    }
+  }
+}
+
+.cl-search{
+  border-bottom: 1px solid #d0d0d0;
+  > input {
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+  }
+}
+
+.cl-contact-data{
+  border-bottom: 1px solid #d0d0d0;
+  >.cl-contact-contacts{
+    color: #908f8f;
+    font-size: 12px;
+  }
+}
+
+.cl-contact-info{
+  font-size: 12px;
+  color: #000;
+  padding: 20px;
+  >.cl-contact-name{
+    height: auto;
+    font-weight: 900;
+  }
+  >.cl-contact-email{
+    height: auto;
+    color: #908f8f;
+  }
+}
+
+.cl-header{
+  background-color: mat-color($app-primary,A700);
+  padding: 10px;
+  z-index: 1;
+
+  -webkit-box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.22);
+  -moz-box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.22);
+  box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.22);
+
+
+  > .cl-delete-button{
+    height: auto;
+  }
+  > .cl-add-button{
+    height: auto;
+    text-align: right;
+  }
+  > .cl-title{
+    text-align: center;
+    color: #FFF;
+    height: auto;
+    font-family: $font-family;
+    font-size: 0.8em;
+    > img{
+      height: 35px;
+    }
+  }
+}
+//
+//.cl-footer{
+//  border-top: 1px solid mat-color($app-primary,900);
+//  >mat-toolbar{
+//    height: 60px;
+//  }
+//}
