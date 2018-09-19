@@ -13,6 +13,7 @@
       box-sizing: border-box;
       color: #FFF;
       padding: 0;
+      border-radius: 0px;
       box-shadow: none;
     }
     > :nth-child(even){
@@ -21,6 +22,15 @@
     > :nth-child(odd){
       background-color: #F3F3F3;
     }
+  }
+}
+
+.cl-search{
+  border-bottom: 1px solid #d0d0d0;
+  > input {
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
   }
 }
 
