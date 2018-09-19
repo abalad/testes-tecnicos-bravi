@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
 import { ContactComponent } from './containers/contact/contact.component';
+import { ContactSandbox } from './contact.sandbox';
 
 @NgModule({
   imports: [
@@ -14,6 +15,9 @@ import { ContactComponent } from './containers/contact/contact.component';
   ],
   exports: [
     ContactComponent
+  ],
+  providers: [
+    ContactSandbox
   ]
 })
 export class ContactModule { }

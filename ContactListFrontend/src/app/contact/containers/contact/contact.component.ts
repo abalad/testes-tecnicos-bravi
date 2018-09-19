@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactSandbox } from '../../contact.sandbox';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  contactsCollection$ = this.contactSandbox.contactsCollection$;
+
+  constructor( private contactSandbox: ContactSandbox ){}
 
   ngOnInit() {
-  }
+  this.contactSandbox.loadContacts();
+}
 
 }
