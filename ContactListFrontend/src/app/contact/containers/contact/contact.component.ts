@@ -17,9 +17,19 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
     this.contactSandbox.loadContacts();
-    this.contactsCollection$.subscribe((values)=>{
-      console.log(values)
-    })
+  }
+
+  updateContact( contact ){
+    const dialogRef = this.dialog.open(ContactDialogComponent,{
+      height: '400px',
+      data: contact
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if( this.isValidResult(result) ){
+        this.contactSandbox.updateContact( result )
+      }
+    });
   }
 
   addContact(){
@@ -28,10 +38,14 @@ export class ContactComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if( typeof result !== 'boolean'){
+      if( this.isValidResult(result) ){
         this.contactSandbox.addContact( result )
       }
     });
+  }
+
+  isValidResult( result ){
+    return typeof result !== 'boolean' && result;
   }
 
 }

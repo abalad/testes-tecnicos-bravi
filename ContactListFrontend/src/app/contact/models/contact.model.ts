@@ -1,4 +1,5 @@
 export class ContactModel {
+  _id: string;
   name: string;
   lastName: string;
   age: number;

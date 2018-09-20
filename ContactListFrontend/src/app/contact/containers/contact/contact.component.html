@@ -21,10 +21,10 @@
     <div class="cl-contact-list" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
 
       <mat-card *ngFor="let contact of contactsCollection$ | async" fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/avatar.jpg" height="90" width="90">
-        <div class="cl-contact-data">
+        <img fxFlex="90px" src="../../assets/imgs/avatar.jpg" height="90" width="90" (click)="updateContact(contact)">
+        <div class="cl-contact-data" (click)="updateContact(contact)">
           <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1px" >
-            <div class="cl-contact-name">{{contact.name}}</div>
+            <div class="cl-contact-name">{{contact.name}} {{contact.lastName}}</div>
             <div class="cl-contact-email">{{contact.contacts.email}}</div>
           </div>
           <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >

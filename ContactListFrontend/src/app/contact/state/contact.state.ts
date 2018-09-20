@@ -75,7 +75,6 @@ export class ContactState implements NgxsOnInit {
 
   @Action(LoadContactsSuccess)
   loadContactSuccess( ctx: StateContext<ContactStateModel>, { payload }: LoadContactsSuccess ) {
-    console.log(payload)
     NgxsEntityAdapter.addAll( payload, ctx );
   }
 

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactModel } from '../../models/contact.model';
-import { MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-contact-dialog',
@@ -10,22 +10,28 @@ import { MatDialogRef } from '@angular/material';
 })
 export class ContactDialogComponent implements OnInit {
 
-  form: FormGroup;
+  form = this.fb.group({
+    _id: [ null, [] ],
+    name: [ '', [ Validators.required ] ],
+    lastName: [ '', [ Validators.required ] ],
+    contacts: this.fb.group({
+      email: [ '', [ Validators.required ] ],
+      phone: [ '', [] ],
+      whatsapp: [ '', [] ],
+    })
+  });
 
-  constructor( private fb: FormBuilder, private dialogRef: MatDialogRef<ContactDialogComponent> ) {}
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<ContactDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: any
+  ) {}
 
   ngOnInit() {
-    this.form = this.fb.group({
-      name: [ '', [ Validators.required ] ],
-      lastName: [ '', [ Validators.required ] ],
-      contacts: this.fb.group({
-        email: [ '', [ Validators.required ] ],
-        phone: [ '', [] ],
-        whatsapp: [ '', [] ],
-      })
-    });
+    if(this.data){
+      this.form.patchValue(this.data);
+    }
   }
-
 
   onSubmit( contact: ContactModel ){
     this.dialogRef.close( contact );

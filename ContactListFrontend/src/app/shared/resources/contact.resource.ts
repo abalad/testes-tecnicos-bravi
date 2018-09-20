@@ -13,6 +13,7 @@ export class ContactResource {
   }
 
   update(people) {
+    console.log(people)
     return from(this._socket.getService('people').patch(people._id, people));
   }
 
