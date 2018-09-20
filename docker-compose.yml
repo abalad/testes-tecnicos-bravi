@@ -14,14 +14,12 @@ services:
    - ./ContactListBackend:/usr/src/app
   depends_on:
    - mongodb
-# app:
-#  build: ./ContactListFrontend/
-#  command: "npm start"
-#  ports:
-#   - "4200:4200"
-#  expose:
-#   - "4200"
-##  volumes:
-##   - ./ContactListFrontend:/usr/app/
-#  depends_on:
-#   - backend
+ app:
+  build: ./ContactListFrontend/
+  command: "npm start"
+  ports:
+   - "4200:4200"
+  expose:
+   - "4200"
+  depends_on:
+   - backend

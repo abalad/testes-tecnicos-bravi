@@ -41,7 +41,6 @@ export class RemoveContact {
 
 export class RemoveContactSuccess {
   static readonly type = '[Contact] Contact Removido com sucesso';
-
   constructor( public payload: ContactModel) {}
 }
 

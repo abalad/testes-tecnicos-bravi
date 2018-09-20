@@ -1,4 +1,4 @@
-import { State, StateContext, NgxsOnInit, Action, Selector } from '@ngxs/store';
+import { State, StateContext, Action, Selector, Store } from '@ngxs/store';
 import { ContactModel } from '../models/contact.model';
 import {
   AddContact,
@@ -11,50 +11,38 @@ import {
   UpdateContact,
   UpdateContactSuccess
 } from './contact.actions';
-import { catchError, map, tap } from 'rxjs/internal/operators';
+import { catchError, map } from 'rxjs/internal/operators';
 import { NgxsEntityStateModel } from '../../shared/plugins/ngrx-entity/ngxs-entity.state.model';
 import { NgxsEntityAdapter } from '../../shared/plugins/ngrx-entity/ngxs-entity.adapter';
 import { ContactResource } from '../../shared/resources/contact.resource';
 
-export class ContactStateModel extends NgxsEntityStateModel<ContactModel> {
-  isLoading: boolean;
-}
-
+export class ContactStateModel extends NgxsEntityStateModel<ContactModel> {}
 
 @State<ContactStateModel>({
   name: 'contact',
   defaults: {
     ids: [],
     entities: {},
-    selected: null,
-    isLoading: false
+    selected: null
   }
 })
-export class ContactState implements NgxsOnInit {
-
-  @Selector()
-  static selected(state: ContactStateModel) {
-    return state.selected;
-  }
-
-  @Selector()
-  static isLoading(state: ContactStateModel) {
-    return state.isLoading;
-  }
+export class ContactState {
 
   @Selector()
   static entities(state: ContactStateModel) {
     return state.entities;
   }
 
-  constructor( private contactResource: ContactResource ) {}
-
-  ngxsOnInit( ctx?: StateContext<ContactStateModel> ): void | any {
-    ctx.dispatch([
-      new ListenAddContact(),
-      new ListenUpdateContact(),
-      new ListenRemoveContact()
-    ]);
+  constructor( private contactResource: ContactResource, private store: Store ) {
+    this.contactResource.observe('created').subscribe(( contact: ContactModel ) => {
+      this.store.dispatch( new AddContactSuccess( contact ) );
+    });
+    this.contactResource.observe('patched').subscribe(( contact: ContactModel ) => {
+      this.store.dispatch( new UpdateContactSuccess( contact ) );
+    });
+    this.contactResource.observe('removed').subscribe(( contact: ContactModel ) => {
+      this.store.dispatch( new RemoveContactSuccess( contact ) );
+    });
   }
 
   @Action(SelectContact)
@@ -80,7 +68,6 @@ export class ContactState implements NgxsOnInit {
 
   @Action(AddContact)
   addContact( ctx: StateContext<ContactStateModel>, action: AddContact ) {
-    ctx.patchState({ isLoading: true });
     return this.contactResource.add(action.payload).pipe(
       map( ( contact: ContactModel ) => ctx.dispatch( new AddContactSuccess( contact ) ) ),
       catchError( ( error ) => ctx.dispatch( new OnError( error ) ) )
@@ -90,7 +77,6 @@ export class ContactState implements NgxsOnInit {
   @Action(AddContactSuccess)
   addContactSuccess( ctx: StateContext<ContactStateModel>, { payload }: AddContactSuccess ) {
     NgxsEntityAdapter.addOne( payload, ctx );
-    ctx.patchState({ isLoading: false });
   }
 
   @Action(UpdateContact)
@@ -132,12 +118,6 @@ export class ContactState implements NgxsOnInit {
     NgxsEntityAdapter.addAll( payload, ctx );
   }
 
-
-  @Action(OnError)
-  onErrorContact( ctx: StateContext<ContactStateModel>, { payload }: OnError ) {
-    ctx.patchState({ isLoading: false });
-  }
-
   @Action(ListenAddContact)
   listenAddContact( ctx: StateContext<ContactStateModel> ) {
     return this.contactResource.observe('created').subscribe(( contact: ContactModel ) => {
@@ -157,6 +137,11 @@ export class ContactState implements NgxsOnInit {
     return this.contactResource.observe('removed').subscribe(( contact: ContactModel ) => {
       NgxsEntityAdapter.removeOne( contact, ctx );
     });
+  }
+
+  @Action(OnError)
+  onErrorContact( ctx: StateContext<ContactStateModel>, { payload }: OnError ) {
+    console.log( payload )
   }
 
 }
