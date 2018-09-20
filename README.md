@@ -21,8 +21,8 @@ npm start
 npm test
 ```
 
-Executando Teste Técnicos 02 e 03 - Contact List
-------------------------------------------------
+Executando Testes Técnicos 02 e 03 - Contact List
+-------------------------------------------------
 ```sh
 # Criando o Ambiente
 docker-compose build
