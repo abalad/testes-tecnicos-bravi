@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatIconModule,
   MatInputModule,
   MatSnackBarModule,
@@ -14,8 +14,9 @@ import {
   imports: [
     CommonModule,
     FlexLayoutModule,
-    MatCardModule,
     MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,
@@ -23,8 +24,9 @@ import {
   ],
   exports:[
     FlexLayoutModule,
-    MatCardModule,
     MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,

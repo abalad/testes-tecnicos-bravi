@@ -8,7 +8,6 @@ module.exports = function (app) {
   const people = new Schema({
     name: { type: String, required: true },
     lastName: { type: String, required: true },
-    age: { type: String },
     contacts: {
       phone: { type: String },
       email: { type: String },
