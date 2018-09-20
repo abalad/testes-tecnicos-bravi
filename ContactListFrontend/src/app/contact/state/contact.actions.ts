@@ -57,6 +57,17 @@ export class ListenUpdateContact {
   static readonly type = '[Contact] Recebe Exclusao de Contact Realtime';
 }
 
+export class SortContact {
+  static readonly type = '[Contact] Sort Contact';
+  constructor( public payload: any ) {}
+}
+
+export class SortContactSuccess {
+  static readonly type = '[Contact] Sort Contact Success';
+  constructor(public payload: ContactModel[]) {}
+}
+
+
 export class OnError {
   static readonly type = '[Contact] Erro na manutenção de contact';
   constructor(public payload: string) {}

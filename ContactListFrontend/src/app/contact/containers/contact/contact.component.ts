@@ -13,7 +13,12 @@ export class ContactComponent implements OnInit {
 
   contactsCollection$ = this.contactSandbox.contactsCollection$;
 
-  constructor( private contactSandbox: ContactSandbox, public dialog: MatDialog){}
+  private descSort = false;
+
+  constructor(
+    private contactSandbox: ContactSandbox,
+    public dialog: MatDialog
+  ){}
 
   ngOnInit() {
     this.contactSandbox.loadContacts();
@@ -48,6 +53,11 @@ export class ContactComponent implements OnInit {
         this.contactSandbox.addContact( result )
       }
     });
+  }
+
+  sortContact(){
+    this.descSort = !this.descSort;
+    this.contactSandbox.sortContact( {  name: this.descSort ? - 1 : 1  } );
   }
 
   isValidResult( result ){

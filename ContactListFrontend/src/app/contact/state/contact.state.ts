@@ -7,7 +7,7 @@ import {
   LoadContactsSuccess,
   OnError,
   RemoveContact,
-  RemoveContactSuccess, SelectContact,
+  RemoveContactSuccess, SelectContact, SortContact, SortContactSuccess,
   UpdateContact,
   UpdateContactSuccess
 } from './contact.actions';
@@ -49,7 +49,7 @@ export class ContactState implements NgxsOnInit {
 
   constructor( private contactResource: ContactResource ) {}
 
-  ngxsOnInit( ctx?: StateContext<any> ): void | any {
+  ngxsOnInit( ctx?: StateContext<ContactStateModel> ): void | any {
     ctx.dispatch([
       new ListenAddContact(),
       new ListenUpdateContact(),
@@ -101,11 +101,6 @@ export class ContactState implements NgxsOnInit {
     );
   }
 
-  @Action(OnError)
-  onErrorContact( ctx: StateContext<ContactStateModel>, { payload }: OnError ) {
-    ctx.patchState({ isLoading: false });
-  }
-
   @Action(UpdateContactSuccess)
   updateContactSuccess( ctx: StateContext<ContactStateModel>, { payload }: UpdateContactSuccess ) {
     NgxsEntityAdapter.updateOne( payload, ctx );
@@ -124,23 +119,41 @@ export class ContactState implements NgxsOnInit {
     NgxsEntityAdapter.removeOne( payload, ctx );
   }
 
+  @Action(SortContact)
+  sortContact( ctx: StateContext<ContactStateModel>, action: SortContact ) {
+    return this.contactResource.sort(action.payload).pipe(
+      map( ( contact: ContactModel[] ) => ctx.dispatch( new SortContactSuccess( contact['data'] ) ) ),
+      catchError( ( error ) => ctx.dispatch( new OnError( error ) ) )
+    );
+  }
+
+  @Action(SortContactSuccess)
+  sortContactSuccess( ctx: StateContext<ContactStateModel>, { payload }: SortContactSuccess ) {
+    NgxsEntityAdapter.addAll( payload, ctx );
+  }
+
+
+  @Action(OnError)
+  onErrorContact( ctx: StateContext<ContactStateModel>, { payload }: OnError ) {
+    ctx.patchState({ isLoading: false });
+  }
+
   @Action(ListenAddContact)
-  listenAddContact( ctx: StateContext<ContactStateModel>) {
-    console.log('CREATED')
+  listenAddContact( ctx: StateContext<ContactStateModel> ) {
     return this.contactResource.observe('created').subscribe(( contact: ContactModel ) => {
       NgxsEntityAdapter.addOne( contact, ctx );
     });
   }
 
   @Action(ListenUpdateContact)
-  listenUpdateContact( ctx: StateContext<ContactStateModel>) {
+  listenUpdateContact( ctx: StateContext<ContactStateModel> ) {
     return this.contactResource.observe('patched').subscribe(( contact: ContactModel ) => {
       NgxsEntityAdapter.updateOne( contact, ctx );
     });
   }
 
   @Action(ListenRemoveContact)
-  listenRemoveContact( ctx: StateContext<ContactStateModel>) {
+  listenRemoveContact( ctx: StateContext<ContactStateModel> ) {
     return this.contactResource.observe('removed').subscribe(( contact: ContactModel ) => {
       NgxsEntityAdapter.removeOne( contact, ctx );
     });

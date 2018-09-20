@@ -12,8 +12,11 @@ export class ContactResource {
     return from(this._socket.getService('people').find());
   }
 
+  sort(sort) {
+    return from(this._socket.getService('people').find({ query:{ $sort: sort } }) );
+  }
+
   update(people) {
-    console.log(people)
     return from(this._socket.getService('people').patch(people._id, people));
   }
 
@@ -27,10 +30,7 @@ export class ContactResource {
 
   observe(trigger): Observable<any> {
     return new Observable<any>((observer) => {
-      console.log(trigger)
-
       this._socket.getService('people').on(trigger, (data: ContactModel) => {
-        console.log(data)
         observer.next(data);
       });
     });

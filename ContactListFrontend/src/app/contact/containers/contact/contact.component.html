@@ -1,8 +1,8 @@
 <div class="cl-container-wrapper" fxLayout="column" fxLayoutAlign="space-between center" >
   <div class="cl-header" fxFlex="60px" fxLayout="row" fxLayoutAlign="center center">
     <div class="cl-add-button" fxFlex="40px">
-      <button mat-icon-button color="accent">
-        <mat-icon aria-label="Example icon-button with a heart icon">sort</mat-icon>
+      <button mat-icon-button color="accent" (click)="sortContact()">
+        <mat-icon aria-label="Sort Contact">sort</mat-icon>
       </button>
     </div>
     <div class="cl-title" fxFlex="100">
@@ -18,7 +18,11 @@
     <div class="cl-search" fxFlex="40px">
       <input matInput placeholder="Search">
     </div>
-    <div class="cl-contact-list" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
+    <div class="cl-contact-notfound" fxFlex="100" fxLayout="column" fxLayoutAlign="center center"
+          *ngIf="(contactsCollection$ | async)?.length === 0">
+      No Contacts found
+    </div>
+    <div  *ngIf="(contactsCollection$ | async)?.length > 0" class="cl-contact-list" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
 
       <mat-card *ngFor="let contact of contactsCollection$ | async" fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
         <img fxFlex="90px" src="../../assets/imgs/avatar.jpg" height="90" width="90" (click)="updateContact(contact)">
@@ -32,9 +36,6 @@
             <button mat-icon-button color="warn" (click)="removeContact(contact)">
               <mat-icon>close</mat-icon>
             </button>
-            <!--<button mat-icon-button color="accent">-->
-              <!--<mat-icon>chat_bubble</mat-icon>-->
-            <!--</button>-->
           </div>
         </div>
       </mat-card>

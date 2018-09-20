@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AddContact, LoadContacts, RemoveContact, SelectContact, UpdateContact } from './state/contact.actions';
+import {
+  AddContact,
+  LoadContacts,
+  RemoveContact,
+  SelectContact,
+  SortContact,
+  UpdateContact
+} from './state/contact.actions';
 import { ContactModel } from './models/contact.model';
 import { ContactSelectors } from './state/contact.selectors';
 import { Observable } from 'rxjs/index';
@@ -29,6 +36,10 @@ export class ContactSandbox {
 
   removeContact( contact: ContactModel ) {
     this.store.dispatch( new RemoveContact( contact ) );
+  }
+
+  sortContact( sort ) {
+    this.store.dispatch( new SortContact( sort ));
   }
 
   selectContact( contact: ContactModel ) {

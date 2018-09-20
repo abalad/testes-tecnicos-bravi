@@ -8,6 +8,10 @@
 .cl-content{
   height: 100%;
 
+  >.cl-contact-notfound{
+    background-color: #F3F3F3;
+  }
+
   >.cl-contact-list{
     overflow: auto;
     background-color: #F3F3F3;
@@ -15,7 +19,7 @@
       box-sizing: border-box;
       color: #FFF;
       padding: 0;
-      border-radius: 0px;
+      border-radius: 0;
       box-shadow: none;
       cursor: pointer;
     }
@@ -72,7 +76,6 @@
   -moz-box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.22);
   box-shadow: 0px 4px 11px 0px rgba(0,0,0,0.22);
 
-
   > .cl-delete-button{
     height: auto;
   }
@@ -91,10 +94,3 @@
     }
   }
 }
-//
-//.cl-footer{
-//  border-top: 1px solid mat-color($app-primary,900);
-//  >mat-toolbar{
-//    height: 60px;
-//  }
-//}
