@@ -3,7 +3,6 @@ import {
   AddContact,
   LoadContacts,
   RemoveContact,
-  SelectContact,
   SortContact,
   UpdateContact
 } from './state/contact.actions';
