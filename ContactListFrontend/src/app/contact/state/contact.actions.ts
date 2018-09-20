@@ -66,7 +66,6 @@ export class SortContactSuccess {
   constructor(public payload: ContactModel[]) {}
 }
 
-
 export class OnError {
   static readonly type = '[Contact] Erro na manutenção de contact';
   constructor(public payload: string) {}

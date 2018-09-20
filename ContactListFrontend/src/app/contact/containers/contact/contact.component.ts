@@ -26,7 +26,7 @@ export class ContactComponent implements OnInit {
 
   updateContact( contact ){
     const dialogRef = this.dialog.open(ContactDialogComponent,{
-      height: '400px',
+      height: '500px',
       data: contact,
       autoFocus: false
     });
@@ -44,7 +44,7 @@ export class ContactComponent implements OnInit {
 
   addContact(){
     const dialogRef = this.dialog.open(ContactDialogComponent,{
-      height: '400px',
+      height: '500px',
       autoFocus: false
     });
 
