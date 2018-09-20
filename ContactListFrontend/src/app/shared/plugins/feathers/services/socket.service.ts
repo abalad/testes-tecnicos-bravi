@@ -16,7 +16,7 @@ export class SocketService extends FeathersService implements OnDestroy {
   constructor( ) {
     super();
 
-    this.socket = io('http://localhost:3030', {
+    this.socket = io('http://192.168.0.108:3030', {
       transports: ['websocket'],
       reconnectionAttempts: 5,
       timeout: 50000,

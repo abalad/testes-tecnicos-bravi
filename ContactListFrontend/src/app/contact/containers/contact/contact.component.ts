@@ -22,7 +22,8 @@ export class ContactComponent implements OnInit {
   updateContact( contact ){
     const dialogRef = this.dialog.open(ContactDialogComponent,{
       height: '400px',
-      data: contact
+      data: contact,
+      autoFocus: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -32,9 +33,14 @@ export class ContactComponent implements OnInit {
     });
   }
 
+  removeContact( contact ){
+    this.contactSandbox.removeContact( contact );
+  }
+
   addContact(){
     const dialogRef = this.dialog.open(ContactDialogComponent,{
-      height: '400px'
+      height: '400px',
+      autoFocus: false
     });
 
     dialogRef.afterClosed().subscribe(result => {

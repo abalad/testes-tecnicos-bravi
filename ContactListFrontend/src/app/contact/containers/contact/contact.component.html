@@ -22,25 +22,23 @@
 
       <mat-card *ngFor="let contact of contactsCollection$ | async" fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
         <img fxFlex="90px" src="../../assets/imgs/avatar.jpg" height="90" width="90" (click)="updateContact(contact)">
-        <div class="cl-contact-data" (click)="updateContact(contact)">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1px" >
+        <div class="cl-contact-data">
+          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1px"  (click)="updateContact(contact)">
             <div class="cl-contact-name">{{contact.name}} {{contact.lastName}}</div>
             <div class="cl-contact-email">{{contact.contacts.email}}</div>
+            <div class="cl-contact-numerics">{{contact.contacts.phone}} | {{contact.contacts.whatsapp}}</div>
           </div>
           <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
+            <button mat-icon-button color="warn" (click)="removeContact(contact)">
+              <mat-icon>close</mat-icon>
             </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
+            <!--<button mat-icon-button color="accent">-->
+              <!--<mat-icon>chat_bubble</mat-icon>-->
+            <!--</button>-->
           </div>
         </div>
       </mat-card>
 
     </div>
   </div>
-  <!--<div class="cl-footer" fxFlex="65px" >-->
-  <!--<mat-toolbar [color]="'primary'"></mat-toolbar>-->
-  <!--</div>-->
 </div>

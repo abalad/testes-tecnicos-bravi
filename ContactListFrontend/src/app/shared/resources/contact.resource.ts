@@ -27,7 +27,10 @@ export class ContactResource {
 
   observe(trigger): Observable<any> {
     return new Observable<any>((observer) => {
+      console.log(trigger)
+
       this._socket.getService('people').on(trigger, (data: ContactModel) => {
+        console.log(data)
         observer.next(data);
       });
     });

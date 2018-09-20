@@ -123,26 +123,27 @@ export class ContactState implements NgxsOnInit {
   removeContactSuccess( ctx: StateContext<ContactStateModel>, { payload }: RemoveContactSuccess ) {
     NgxsEntityAdapter.removeOne( payload, ctx );
   }
-  //
-  // @Action(ListenAddContact)
-  // listenAddContact( ctx: StateContext<ContactStateModel>) {
-  //   return this.contactResource.observe('created').subscribe(( contact: ContactModel ) => {
-  //     NgxsEntityAdapter.addOne( contact, ctx );
-  //   });
-  // }
-  //
-  // @Action(ListenUpdateContact)
-  // listenUpdateContact( ctx: StateContext<ContactStateModel>) {
-  //   return this.contactResource.observe('patched').subscribe(( contact: ContactModel ) => {
-  //     NgxsEntityAdapter.updateOne( contact, ctx );
-  //   });
-  // }
-  //
-  // @Action(ListenRemoveContact)
-  // listenRemoveContact( ctx: StateContext<ContactStateModel>) {
-  //   return this.contactResource.observe('removed').subscribe(( contact: ContactModel ) => {
-  //     NgxsEntityAdapter.removeOne( contact, ctx );
-  //   });
-  // }
+
+  @Action(ListenAddContact)
+  listenAddContact( ctx: StateContext<ContactStateModel>) {
+    console.log('CREATED')
+    return this.contactResource.observe('created').subscribe(( contact: ContactModel ) => {
+      NgxsEntityAdapter.addOne( contact, ctx );
+    });
+  }
+
+  @Action(ListenUpdateContact)
+  listenUpdateContact( ctx: StateContext<ContactStateModel>) {
+    return this.contactResource.observe('patched').subscribe(( contact: ContactModel ) => {
+      NgxsEntityAdapter.updateOne( contact, ctx );
+    });
+  }
+
+  @Action(ListenRemoveContact)
+  listenRemoveContact( ctx: StateContext<ContactStateModel>) {
+    return this.contactResource.observe('removed').subscribe(( contact: ContactModel ) => {
+      NgxsEntityAdapter.removeOne( contact, ctx );
+    });
+  }
 
 }
