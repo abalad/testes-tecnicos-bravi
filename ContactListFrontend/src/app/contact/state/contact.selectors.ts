@@ -8,14 +8,4 @@ export class ContactSelectors {
     return new NgxsEntitySelector().getEntities( entities );
   }
 
-  @Selector([ContactState.selected])
-  static selected(selected: ContactStateModel['selected']) {
-    return selected;
-  }
-
-  @Selector([ContactState.isLoading])
-  static isLoading(isLoading: ContactStateModel['isLoading']) {
-    return isLoading;
-  }
-
 }
