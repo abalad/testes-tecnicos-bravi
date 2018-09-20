@@ -5,7 +5,12 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+      (context) => {
+        delete context.data._id
+        return context;
+      }
+    ],
     update: [],
     patch: [],
     remove: []
