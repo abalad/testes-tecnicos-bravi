@@ -7,7 +7,9 @@ module.exports = {
     get: [],
     create: [
       (context) => {
-        delete context.data._id
+        if(!context.data._id){
+          delete context.data._id;
+        }
         return context;
       }
     ],
