@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
@@ -9,6 +9,7 @@ import {
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
+import { ContactResource } from './resources/contact.resource';
 
 @NgModule({
   imports: [
@@ -34,4 +35,13 @@ import {
   ],
   declarations: []
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ContactResource
+      ]
+    }
+  }
+}

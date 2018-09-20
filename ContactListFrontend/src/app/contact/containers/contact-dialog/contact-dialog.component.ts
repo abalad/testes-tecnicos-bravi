@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactModel } from '../../models/contact.model';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-contact-dialog',
@@ -11,7 +12,7 @@ export class ContactDialogComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor( private fb: FormBuilder ) {}
+  constructor( private fb: FormBuilder, private dialogRef: MatDialogRef<ContactDialogComponent> ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -27,7 +28,7 @@ export class ContactDialogComponent implements OnInit {
 
 
   onSubmit( contact: ContactModel ){
-    console.log(contact)
+    this.dialogRef.close( contact );
   }
 
 }

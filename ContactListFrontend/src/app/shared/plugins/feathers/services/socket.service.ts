@@ -2,10 +2,9 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { FeathersService } from './feathers.service';
 
 import * as io from 'socket.io-client';
-// import * as feathers from '@feathersjs/client';
-// import * as socketio from '@feathersjs/socketio-client';
+import * as feathers from '@feathersjs/client';
+import * as socketio from '@feathersjs/socketio-client';
 import { Subject, Subscription } from 'rxjs';
-import { environment } from '../../../../../environments/environment';
 
 @Injectable()
 export class SocketService extends FeathersService implements OnDestroy {
@@ -17,15 +16,15 @@ export class SocketService extends FeathersService implements OnDestroy {
   constructor( ) {
     super();
 
-    this.socket = io(environment.serverHost, {
+    this.socket = io('http://localhost:3030', {
       transports: ['websocket'],
       reconnectionAttempts: 5,
       timeout: 50000,
       reconnectionDelay: 10000
     });
 
-    // this._app = feathers()
-    //   .configure(socketio(this.socket, { timeout: 50000}));
+    this._app = feathers()
+      .configure(socketio(this.socket, { timeout: 50000}));
   }
 
   on( event ) {

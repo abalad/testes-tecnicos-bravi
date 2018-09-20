@@ -24,7 +24,7 @@ import { FeathersModule } from '../shared/plugins/feathers/feathers.module';
         { path: '', redirectTo: 'main', pathMatch: 'full' },
         { path: 'main', component: ContactComponent }
     ]),
-    SharedModule,
+    SharedModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

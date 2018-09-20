@@ -17,6 +17,9 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
     this.contactSandbox.loadContacts();
+    this.contactsCollection$.subscribe((values)=>{
+      console.log(values)
+    })
   }
 
   addContact(){
@@ -25,7 +28,9 @@ export class ContactComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if( typeof result !== 'boolean'){
+        this.contactSandbox.addContact( result )
+      }
     });
   }
 

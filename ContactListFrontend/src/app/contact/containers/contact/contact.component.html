@@ -19,12 +19,13 @@
       <input matInput placeholder="Search">
     </div>
     <div class="cl-contact-list" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
+
+      <mat-card *ngFor="let contact of contactsCollection$ | async" fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
+        <img fxFlex="90px" src="../../assets/imgs/avatar.jpg" height="90" width="90">
         <div class="cl-contact-data">
           <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1px" >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
+            <div class="cl-contact-name">{{contact.name}}</div>
+            <div class="cl-contact-email">{{contact.contacts.email}}</div>
           </div>
           <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
             <button mat-icon-button color="warn">
@@ -37,131 +38,6 @@
         </div>
       </mat-card>
 
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
-        <div class="cl-contact-data">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center"  >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
-          </div>
-          <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
-            </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
-        <div class="cl-contact-data">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center"  >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
-          </div>
-          <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
-            </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
-        <div class="cl-contact-data">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center"  >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
-          </div>
-          <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
-            </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
-        <div class="cl-contact-data">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center"  >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
-          </div>
-          <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
-            </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
-        <div class="cl-contact-data">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center"  >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
-          </div>
-          <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
-            </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
-        <div class="cl-contact-data">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center"  >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
-          </div>
-          <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
-            </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card>
-
-      <mat-card fxFlex="90px" fxLayout="row" fxLayoutAlign="space-between stretch" >
-        <img fxFlex="90px" src="../../assets/imgs/asnt.jpg" height="90" width="90">
-        <div class="cl-contact-data">
-          <div class="cl-contact-info"  fxLayout="column" fxLayoutAlign="center center"  >
-            <div class="cl-contact-name">Maicon Wagner dos Santos</div>
-            <div class="cl-contact-email">mister-x59@hotmail.com.br</div>
-          </div>
-          <div class="cl-contact-contacts" fxFlex="80px" fxLayout="row" fxLayoutAlign="center center" >
-            <button mat-icon-button color="warn">
-              <mat-icon>phone</mat-icon>
-            </button>
-            <button mat-icon-button color="accent">
-              <mat-icon>chat_bubble</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card>
     </div>
   </div>
   <!--<div class="cl-footer" fxFlex="65px" >-->

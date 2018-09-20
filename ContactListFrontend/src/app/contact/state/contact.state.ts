@@ -11,7 +11,7 @@ import {
   UpdateContact,
   UpdateContactSuccess
 } from './contact.actions';
-import { catchError, map } from 'rxjs/internal/operators';
+import { catchError, map, tap } from 'rxjs/internal/operators';
 import { NgxsEntityStateModel } from '../../shared/plugins/ngrx-entity/ngxs-entity.state.model';
 import { NgxsEntityAdapter } from '../../shared/plugins/ngrx-entity/ngxs-entity.adapter';
 import { ContactResource } from '../../shared/resources/contact.resource';
@@ -19,6 +19,7 @@ import { ContactResource } from '../../shared/resources/contact.resource';
 export class ContactStateModel extends NgxsEntityStateModel<ContactModel> {
   isLoading: boolean;
 }
+
 
 @State<ContactStateModel>({
   name: 'contact',
@@ -74,6 +75,7 @@ export class ContactState implements NgxsOnInit {
 
   @Action(LoadContactsSuccess)
   loadContactSuccess( ctx: StateContext<ContactStateModel>, { payload }: LoadContactsSuccess ) {
+    console.log(payload)
     NgxsEntityAdapter.addAll( payload, ctx );
   }
 
