@@ -24,8 +24,8 @@
   "scripts": {
     "test": "npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json --fix",
-    "dev": "nodemon src/",
-    "start": "node src/",
+    "dev": "nodemon src/index.js --watch",
+    "start": "nodemon src/index.js --watch",
     "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
@@ -40,7 +40,7 @@
     "helmet": "^3.13.0",
     "mongoose": "^5.2.15",
     "serve-favicon": "^2.5.0",
-    "winston": "^3.0.0"
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^5.5.0",
